@@ -1,6 +1,4 @@
-let fcr = function(a, b) {
-    return a + b;
-}
+const somar = (a, b) => a + b;
 
-let rsl = fcr(3, 5);
-console.log(rsl);
+const resultado = somar(3, 5);
+console.log(`O resultado da soma é: ${resultado}`);

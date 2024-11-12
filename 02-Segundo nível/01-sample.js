@@ -1,6 +1,9 @@
+const DESCONTO_FIXO = 0.15;
+
 function calcularDesconto(preco) {
-    return preco - (preco * 0.15);
+    return preco - (preco * DESCONTO_FIXO);
 }
 
-const precoFinal = calcularDesconto(100);
-console.log(`Preço com desconto: ${precoFinal}`);
+const precoOriginal = 100;
+const precoComDesconto = calcularDesconto(precoOriginal);
+console.log(`Preço com desconto: R$ ${precoComDesconto.toFixed(2)}`);

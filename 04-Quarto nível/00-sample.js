@@ -1,11 +1,11 @@
+// Função principal para buscar o personagem
 async function buscarPersonagem() {
-    const mensagemDiv = document.getElementById("mensagem");
-    mensagemDiv.innerHTML = "";
+    limparMensagem();
 
-    const id = document.getElementById("personagemId").value;
+    const id = document.getElementById("personagemId").value.trim();
 
-    if (!id || id <= 0) {
-        mostrarErro("ID inválido. Insira um número positivo.", "danger");
+    if (!validarId(id)) {
+        exibirMensagem("ID inválido. Insira um número positivo.", "danger");
         return;
     }
 
@@ -20,21 +20,33 @@ async function buscarPersonagem() {
         mostrarResultado(personagem);
 
     } catch (erro) {
-        mostrarErro(erro.message, "danger");
+        exibirMensagem(erro.message, "danger");
     }
 }
 
-function mostrarErro(mensagem, tipo) {
+// Função para validar o ID
+function validarId(id) {
+    const numeroId = parseInt(id);
+    return !isNaN(numeroId) && numeroId > 0;
+}
+
+// Função para exibir mensagens de alerta (erro ou sucesso)
+function exibirMensagem(mensagem, tipo) {
     const mensagemDiv = document.getElementById("mensagem");
     mensagemDiv.innerHTML = `<div class="alert alert-${tipo}" role="alert">${mensagem}</div>`;
 }
 
-function mostrarResultado(personagem) {
+// Função para limpar mensagens
+function limparMensagem() {
     const mensagemDiv = document.getElementById("mensagem");
-    mensagemDiv.innerHTML = `
-      <div class="alert alert-success" role="alert">
+    mensagemDiv.innerHTML = "";
+}
+
+// Função para exibir os detalhes do personagem
+function mostrarResultado(personagem) {
+    exibirMensagem(`
         <strong>Nome:</strong> ${personagem.name}<br>
         <strong>Altura:</strong> ${personagem.height} cm<br>
         <strong>Peso:</strong> ${personagem.mass} kg
-      </div>`;
+    `, "success");
 }

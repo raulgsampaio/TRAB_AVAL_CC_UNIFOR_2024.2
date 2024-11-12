@@ -1,9 +1,6 @@
 function verificarSePodeDirigir(idade) {
-    if (idade >= 18) {
-        return 'Pode dirigir';
-    } else {
-        return 'Não pode dirigir';
-    }
+    return idade >= 18 ? 'Pode dirigir' : 'Não pode dirigir';
 }
 
-console.log(verificarSePodeDirigir(16));
+console.log(verificarSePodeDirigir(16)); 
+console.log(verificarSePodeDirigir(20)); 
